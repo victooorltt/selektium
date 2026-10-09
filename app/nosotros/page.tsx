@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import {
   Users,
   Compass,
@@ -7,7 +6,6 @@ import {
   Shield,
   HeartHandshake,
   CheckCircle2,
-  ArrowRight,
 } from 'lucide-react';
 import PageHero from '@/components/PageHero';
 import AccentSection from '@/components/AccentSection';
@@ -158,23 +156,6 @@ export default function NosotrosPage() {
                 La preocupación compartida es el interés y disfrute por trabajar por, para, con y desde las personas.
               </p>
             </div>
-          </div>
-
-          <div className="mt-12 p-8 rounded-2xl bg-zinc-50 border border-zinc-200/80 flex flex-col sm:flex-row items-center justify-between gap-6">
-            <div>
-              <h3 className="text-lg font-semibold text-ink">
-                ¿Deseas colaborar con nosotros o necesitas asesoramiento?
-              </h3>
-              <p className="text-zinc-600 text-sm mt-1">
-                Estamos a tu disposición en nuestra oficina de Bilbao o vía online.
-              </p>
-            </div>
-            <Link
-              href="/contacto"
-              className="inline-flex items-center justify-center px-6 py-3 text-sm font-semibold text-white bg-accent hover:bg-accent-hover rounded-xl shadow-xs transition-colors shrink-0"
-            >
-              Contactar con el equipo <ArrowRight className="w-4 h-4 ml-2" />
-            </Link>
           </div>
         </div>
       </section>
