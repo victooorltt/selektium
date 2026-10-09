@@ -147,13 +147,6 @@ export default function Navbar() {
           >
             Contacto
           </Link>
-
-          <Link
-            href="/contacto"
-            className="inline-flex items-center justify-center px-5 py-2.5 text-sm font-semibold text-accent bg-white hover:bg-zinc-100 rounded-xl transition-all shadow-xs hover:shadow-md"
-          >
-            Contactar
-          </Link>
         </nav>
 
         {/* Mobile Menu Button */}
@@ -241,14 +234,6 @@ export default function Navbar() {
               className="text-base font-medium text-white/90 hover:text-white transition-colors py-1.5"
             >
               Contacto
-            </Link>
-
-            <Link
-              href="/contacto"
-              onClick={closeAllMenus}
-              className="mt-3 inline-flex items-center justify-center w-full px-5 py-3 text-base font-semibold text-accent bg-white hover:bg-zinc-100 rounded-xl transition-all shadow-sm"
-            >
-              Contactar
             </Link>
           </nav>
         </div>
