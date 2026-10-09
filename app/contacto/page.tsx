@@ -14,8 +14,6 @@ import {
 } from 'lucide-react';
 import LinkedinIcon from '@/components/LinkedinIcon';
 import PageHero from '@/components/PageHero';
-import AccentSection from '@/components/AccentSection';
-import CTASection from '@/components/CTASection';
 
 export default function ContactoPage() {
   const [formData, setFormData] = useState({
@@ -404,19 +402,47 @@ export default function ContactoPage() {
         </div>
       </section>
 
-      {/* Mandatory Accent Section (#142D59) with photo */}
-      <AccentSection
-        title="Atención a medida para empresas y particulares"
-        subtitle="Bilbao y Nivel Peninsular"
-        imageSrc="/accent-contacto.webp"
-        imageAlt="Oficina Selektium Bilbao en Avenida de las Universidades"
-        ctaText="Llamar al 94 685 31 24"
-        ctaHref="tel:946853124"
-        description="Selektium ofrece sus servicios a nivel local, nacional e internacional. Su oficina se encuentra en Bilbao aunque se abordan proyectos a nivel peninsular. Para un correcto funcionamiento de la oficina se atiende únicamente con cita previa."
-      />
+      {/* Sección del Mapa de Ubicación de la Oficina */}
+      <section className="py-16 lg:py-20 bg-zinc-50 border-t border-zinc-200/80">
+        <div className="max-w-6xl mx-auto px-6 space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+            <div>
+              <span className="text-xs font-semibold text-accent uppercase tracking-wider">
+                Ubicación
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-ink mt-1">
+                Nuestra oficina en Bilbao
+              </h2>
+              <p className="text-zinc-600 text-sm mt-1">
+                Avenida de las Universidades 8, Dpto. 2 (entreplanta), 48007 Bilbao (Bizkaia)
+              </p>
+            </div>
+            <a
+              href="https://maps.google.com/?q=Avenida+de+las+Universidades+8,+48007+Bilbao"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-accent hover:underline shrink-0"
+            >
+              <MapPin className="w-4 h-4" />
+              Abrir en Google Maps →
+            </a>
+          </div>
 
-      {/* Final CTA Section */}
-      <CTASection />
+          <div className="w-full overflow-hidden rounded-2xl border border-zinc-200/80 shadow-2xs bg-white">
+            <iframe
+              src="https://maps.google.com/maps?q=Avenida+de+las+Universidades+8,+48007+Bilbao,+Bizkaia&t=&z=16&ie=UTF8&iwloc=&output=embed"
+              width="100%"
+              height="450"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Ubicación de Selektium en Bilbao"
+              className="w-full h-80 sm:h-96 md:h-[450px]"
+            />
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
