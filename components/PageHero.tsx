@@ -53,9 +53,13 @@ export default function PageHero({
   return (
     <section
       className={`relative overflow-hidden ${
-        isDark ? 'bg-zinc-950 border-b border-zinc-800/80' : 'bg-white border-b border-zinc-200/80'
+        isGradient
+          ? 'bg-zinc-950 md:bg-white border-b border-zinc-800/80 md:border-zinc-200/80'
+          : isDark
+          ? 'bg-zinc-950 border-b border-zinc-800/80'
+          : 'bg-white border-b border-zinc-200/80'
       } ${minHeight} flex items-center ${
-        isGradient ? '' : 'justify-center'
+        isGradient ? 'justify-center md:justify-start' : 'justify-center'
       } ${className}`.trim()}
     >
       {/* Background photo container */}
@@ -76,14 +80,8 @@ export default function PageHero({
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/45 to-black/70" />
         ) : isGradient ? (
           <>
-            {/* Mobile vertical gradient: clean white behind top text, smooth progressive diffusion, photo clearly visible at bottom */}
-            <div
-              className="absolute inset-0 md:hidden"
-              style={{
-                background:
-                  'linear-gradient(to bottom, #ffffff 0%, #ffffff 38%, rgba(255, 255, 255, 0.85) 52%, rgba(255, 255, 255, 0.3) 72%, rgba(255, 255, 255, 0) 90%)',
-              }}
-            />
+            {/* Mobile dark overlay: identical to the centered overlay variant */}
+            <div className="absolute inset-0 md:hidden bg-gradient-to-b from-black/65 via-black/50 to-black/75" />
             {/* Desktop horizontal gradient fade: solid white behind left text, gradual diffusion in center, right side completely open to show photo with full clarity */}
             <div
               className="absolute inset-0 hidden md:block"
@@ -101,13 +99,23 @@ export default function PageHero({
       {/* Content Container */}
       <div
         className={`relative z-10 mx-auto px-6 py-16 lg:py-24 w-full ${
-          isGradient ? 'max-w-6xl text-left' : 'max-w-5xl text-center'
+          isGradient ? 'max-w-6xl text-center md:text-left' : 'max-w-5xl text-center'
         }`}
       >
-        <div className={isGradient ? 'max-w-xl lg:max-w-2xl' : 'max-w-3xl mx-auto'}>
+        <div
+          className={
+            isGradient
+              ? 'max-w-3xl mx-auto md:max-w-xl lg:max-w-2xl md:mx-0'
+              : 'max-w-3xl mx-auto'
+          }
+        >
           <h1
             className={`text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight leading-[1.15] ${
-              isDark ? 'text-white' : 'text-ink'
+              isGradient
+                ? 'text-white md:text-ink'
+                : isDark
+                ? 'text-white'
+                : 'text-ink'
             }`}
           >
             {title}
@@ -116,8 +124,12 @@ export default function PageHero({
           {subtitle && (
             <p
               className={`mt-5 text-base sm:text-lg lg:text-xl leading-relaxed font-normal ${
-                isDark ? 'text-zinc-200' : 'text-ink/80'
-              } ${isGradient ? 'max-w-2xl' : 'max-w-2xl mx-auto'}`}
+                isGradient
+                  ? 'text-zinc-200 md:text-ink/80 max-w-2xl mx-auto md:mx-0'
+                  : isDark
+                  ? 'text-zinc-200 max-w-2xl mx-auto'
+                  : 'text-ink/80 max-w-2xl'
+              }`}
             >
               {subtitle}
             </p>
@@ -127,14 +139,16 @@ export default function PageHero({
           {(ctaText || secondaryCtaText || children) && (
             <div
               className={`mt-8 flex flex-col sm:flex-row items-center gap-4 ${
-                isGradient ? 'justify-start' : 'justify-center'
+                isGradient ? 'justify-center md:justify-start' : 'justify-center'
               }`}
             >
               {ctaText && ctaHref && (
                 <Link
                   href={ctaHref}
                   className={`inline-flex items-center justify-center px-8 py-3.5 text-base font-semibold rounded-xl shadow-md transition-all hover:shadow-lg w-full sm:w-auto ${
-                    isDark
+                    isGradient
+                      ? 'text-ink bg-white hover:bg-zinc-100 md:text-white md:bg-accent md:hover:bg-accent-hover'
+                      : isDark
                       ? 'text-ink bg-white hover:bg-zinc-100'
                       : 'text-white bg-accent hover:bg-accent-hover'
                   }`}
@@ -146,7 +160,9 @@ export default function PageHero({
                 <Link
                   href={secondaryCtaHref}
                   className={`inline-flex items-center justify-center px-8 py-3.5 text-base font-medium rounded-xl transition-colors w-full sm:w-auto ${
-                    isDark
+                    isGradient
+                      ? 'text-white bg-white/10 hover:bg-white/20 border border-white/25 backdrop-blur-xs md:text-ink md:bg-white/90 md:hover:bg-white md:border-zinc-300 md:hover:border-zinc-400'
+                      : isDark
                       ? 'text-white bg-white/10 hover:bg-white/20 border border-white/25 backdrop-blur-xs'
                       : 'text-ink bg-white/90 hover:bg-white border border-zinc-300 hover:border-zinc-400'
                   }`}
@@ -163,13 +179,21 @@ export default function PageHero({
         {benefits && benefits.length > 0 && (
           <div
             className={`mt-10 pt-6 border-t ${
-              isDark ? 'border-white/20' : 'border-zinc-300/60'
-            } ${isGradient ? 'max-w-2xl' : 'max-w-4xl mx-auto'}`}
+              isGradient
+                ? 'border-white/20 md:border-zinc-300/60 max-w-4xl mx-auto md:max-w-2xl md:mx-0'
+                : isDark
+                ? 'border-white/20 max-w-4xl mx-auto'
+                : 'border-zinc-300/60 max-w-4xl mx-auto'
+            }`}
           >
             <div
               className={`grid grid-cols-2 sm:flex sm:flex-row sm:items-center sm:justify-center sm:flex-nowrap gap-4 sm:gap-6 lg:gap-8 text-xs sm:text-sm font-medium ${
-                isDark ? 'text-zinc-200' : 'text-ink'
-              } ${isGradient ? 'sm:justify-start' : 'sm:justify-center'}`}
+                isGradient
+                  ? 'text-zinc-200 md:text-ink justify-center md:justify-start'
+                  : isDark
+                  ? 'text-zinc-200 justify-center'
+                  : 'text-ink justify-center'
+              }`}
             >
               {benefits.map((benefit, idx) => {
                 const IconComponent = benefit.icon;
@@ -181,7 +205,11 @@ export default function PageHero({
                     {IconComponent && (
                       <IconComponent
                         className={`h-4 w-4 shrink-0 ${
-                          isDark ? 'text-blue-300' : 'text-accent'
+                          isGradient
+                            ? 'text-blue-300 md:text-accent'
+                            : isDark
+                            ? 'text-blue-300'
+                            : 'text-accent'
                         }`}
                       />
                     )}
