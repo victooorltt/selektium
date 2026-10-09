@@ -4,7 +4,6 @@ import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { Upload, CheckCircle2, ShieldCheck, AlertCircle } from 'lucide-react';
 import PageHero from '@/components/PageHero';
-import AccentSection from '@/components/AccentSection';
 import CTASection from '@/components/CTASection';
 
 function EnviarCVContent() {
@@ -54,13 +53,13 @@ function EnviarCVContent() {
 
   return (
     <div>
-      {/* Hero with gradient variant */}
+      {/* Hero with centered variant (same style as Inicio without benefits) */}
       <PageHero
         title="Déjanos tu CV aquí"
         subtitle="Las personas interesadas en participar en nuestros procesos de selección pueden enviar su CV actualizado indicando la oferta de empleo y/o puestos afines a su perfil."
         imageSrc="/hero-enviar-cv.webp"
         imageAlt="Enviar currículum a Selektium"
-        variant="gradient"
+        variant="centered"
       />
 
       {/* Formulario de Envío de CV */}
@@ -276,23 +275,11 @@ function EnviarCVContent() {
               </div>
 
               {/* RGPD Legal Text & Checkboxes */}
-              <div className="p-6 rounded-2xl bg-zinc-50 border border-zinc-200/80 space-y-5 text-xs text-zinc-600 leading-relaxed">
+              <div className="p-6 rounded-2xl bg-zinc-50 border border-zinc-200/80 space-y-4 text-xs text-zinc-600 leading-relaxed">
                 <div className="flex items-start gap-2.5">
                   <ShieldCheck className="w-4 h-4 text-accent shrink-0 mt-0.5" />
                   <p className="font-semibold text-zinc-900">
                     Información sobre Protección de Datos (RGPD)
-                  </p>
-                </div>
-
-                <div className="h-36 overflow-y-auto pr-2 space-y-2 border-y border-zinc-200 py-3 text-zinc-500 text-[11px] leading-relaxed">
-                  <p>
-                    <strong>RGPD:</strong> Le informamos que sus datos personales serán tratados por <strong>Selektium Team S.L.</strong> con la finalidad de para formar parte de la base de datos de currículums, gestionarlos para realizar procesos de selección de personas, otros procedimientos de RRHH y/u orientación laboral con la licitud del consentimiento otorgado por usted.
-                  </p>
-                  <p>
-                    Los datos serán conservados únicamente según lo establecido en la legalidad vigente. Se cederán los datos necesarios para llevar a cabo la finalidad contratada a empresas que nos prestan y contratan servicios, pudiendo solicitar dicha información en consultora@selektium.com.
-                  </p>
-                  <p>
-                    Del mismo modo le informamos que puede ejercer los derechos de acceso, rectificación, limitación, portabilidad, supresión y oposición de sus datos en consultora@selektium.com y el derecho de reclamación en www.agpd.es.
                   </p>
                 </div>
 
@@ -346,17 +333,6 @@ function EnviarCVContent() {
           )}
         </div>
       </section>
-
-      {/* Mandatory Accent Section (#142D59) with photo */}
-      <AccentSection
-        title="Tratamiento profesional y riguroso de tu perfil"
-        subtitle="Confidencialidad Garantizada"
-        imageSrc="/accent-enviar-cv.webp"
-        imageAlt="Consultora revisando candidaturas Selektium"
-        ctaText="Contactar con Selektium"
-        ctaHref="/contacto"
-        description="Cuidando al máximo la imagen de la compañía para la que se desarrolla el proyecto de reclutamiento y selección de personal, como la de las personas que se interesan por estas mismas ofertas de empleo. Tu perfil será analizado y valorado con la máxima dedicación por nuestros consultores especializados."
-      />
 
       {/* Final CTA Section */}
       <CTASection />

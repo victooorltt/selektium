@@ -21,6 +21,7 @@ const offersList = [
     title: 'Camarero/a con experiencia',
     category: 'Hostelería y Eventos',
     location: 'Bilbao centro (Bizkaia)',
+    image: '/oferta-camarero.webp',
     summary:
       '¿Te gusta la hostelería, disfrutas trabajando en equipo y te motiva el contacto con personas de diferentes nacionalidades? Esta puede ser tu oportunidad.',
     description:
@@ -31,6 +32,7 @@ const offersList = [
     title: 'Cocinero/a Senior',
     category: 'Hostelería y Restauración',
     location: 'Bilbao (Bizkaia)',
+    image: '/oferta-cocinero.webp',
     summary:
       'Buscamos talento culinario con experiencia para empresa de restauración con varios locales y servicios de catering.',
     description:
@@ -41,6 +43,7 @@ const offersList = [
     title: 'Técnico/a Comercial Zona Norte – Sector Construcción / Industrial',
     category: 'Comercial y Ventas',
     location: 'Zona Norte',
+    image: '/oferta-comercial.webp',
     summary:
       'Compañía de soluciones técnicas para sectores de construcción e industrial basada en tecnologías novedosas.',
     description:
@@ -51,6 +54,7 @@ const offersList = [
     title: 'Coordinador/a de Seguridad y Salud en Obras de Construcción',
     category: 'Prevención de Riesgos Laborales',
     location: 'Bizkaia',
+    image: '/oferta-seguridad.webp',
     summary:
       'Empresa referente de Prevención de Riesgos Laborales en todas sus especialidades técnicas y de salud.',
     description:
@@ -61,6 +65,7 @@ const offersList = [
     title: 'Administrativo/a Sector Servicios - Bizkaia',
     category: 'Administración y Gestión',
     location: 'Bilbao, Bizkaia',
+    image: '/oferta-administrativo.webp',
     summary:
       'Proceso de selección para empresa consolidada del sector servicios ubicada en Bilbao.',
     description:
@@ -112,44 +117,58 @@ export default function OfertasPage() {
                   key={offer.id}
                   className="rounded-2xl border border-zinc-200/80 bg-zinc-50/50 hover:bg-white hover:border-accent/40 transition-all p-6 sm:p-8"
                 >
-                  <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-                    <div className="space-y-2">
-                      <div className="flex flex-wrap items-center gap-2">
-                        <span className="inline-flex items-center gap-1 text-xs font-medium bg-accent/10 text-accent px-2.5 py-1 rounded-md">
-                          <Building className="w-3 h-3" />
-                          {offer.category}
-                        </span>
-                        <span className="inline-flex items-center gap-1 text-xs font-medium bg-zinc-100 text-zinc-600 px-2.5 py-1 rounded-md">
-                          <MapPin className="w-3 h-3 text-zinc-400" />
-                          {offer.location}
-                        </span>
-                      </div>
-                      <h3 className="text-xl sm:text-2xl font-semibold text-ink leading-tight pt-1">
-                        {offer.title}
-                      </h3>
+                  <div className="flex flex-col md:flex-row items-start gap-6">
+                    {/* Offer Image */}
+                    <div className="w-full md:w-52 h-44 sm:h-48 md:h-40 rounded-xl overflow-hidden shrink-0 bg-zinc-100 border border-zinc-200/80">
+                      <img
+                        src={offer.image}
+                        alt={offer.title}
+                        className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                      />
                     </div>
 
-                    <button
-                      type="button"
-                      onClick={() => toggleOffer(offer.id)}
-                      className="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-semibold text-accent bg-white hover:bg-zinc-100 border border-zinc-200 rounded-xl transition-colors shadow-2xs self-start"
-                      aria-expanded={isExpanded}
-                    >
-                      <span>{isExpanded ? 'Ocultar' : 'Ver'}</span>
-                      {isExpanded ? (
-                        <ChevronUp className="w-4 h-4" />
-                      ) : (
-                        <ChevronDown className="w-4 h-4" />
-                      )}
-                    </button>
-                  </div>
+                    {/* Offer Main Info */}
+                    <div className="flex-1 w-full space-y-3">
+                      <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+                        <div className="space-y-2">
+                          <div className="flex flex-wrap items-center gap-2">
+                            <span className="inline-flex items-center gap-1 text-xs font-medium bg-accent/10 text-accent px-2.5 py-1 rounded-md">
+                              <Building className="w-3 h-3" />
+                              {offer.category}
+                            </span>
+                            <span className="inline-flex items-center gap-1 text-xs font-medium bg-zinc-100 text-zinc-600 px-2.5 py-1 rounded-md">
+                              <MapPin className="w-3 h-3 text-zinc-400" />
+                              {offer.location}
+                            </span>
+                          </div>
+                          <h3 className="text-xl sm:text-2xl font-semibold text-ink leading-tight">
+                            {offer.title}
+                          </h3>
+                        </div>
 
-                  {/* Summary preview */}
-                  {!isExpanded && (
-                    <p className="mt-4 text-zinc-600 text-sm leading-relaxed">
-                      {offer.summary}
-                    </p>
-                  )}
+                        <button
+                          type="button"
+                          onClick={() => toggleOffer(offer.id)}
+                          className="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-semibold text-accent bg-white hover:bg-zinc-100 border border-zinc-200 rounded-xl transition-colors shadow-2xs self-start shrink-0"
+                          aria-expanded={isExpanded}
+                        >
+                          <span>{isExpanded ? 'Ocultar' : 'Ver'}</span>
+                          {isExpanded ? (
+                            <ChevronUp className="w-4 h-4" />
+                          ) : (
+                            <ChevronDown className="w-4 h-4" />
+                          )}
+                        </button>
+                      </div>
+
+                      {/* Summary preview */}
+                      {!isExpanded && (
+                        <p className="text-zinc-600 text-sm leading-relaxed pt-1">
+                          {offer.summary}
+                        </p>
+                      )}
+                    </div>
+                  </div>
 
                   {/* Expanded detailed content */}
                   {isExpanded && (
